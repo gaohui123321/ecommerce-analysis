@@ -1,0 +1,24 @@
+# 数据集（从 Kaggle 下载，不上传）
+data/*.csv
+data/*.zip
+
+# 运行时产出（跑 Notebook 后生成，不上传）
+output/*.parquet
+output/*.csv
+output/*.xlsx
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.ipynb_checkpoints/
+
+# 系统
+.DS_Store
+Thumbs.db
+
+# 环境
+.env
+.venv/
+venv/
+output/Tableau*.md
