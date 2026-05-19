@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>电商用户行为与销售数据分析 — Tableau 仪表板</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: "Microsoft YaHei", "微软雅黑", -apple-system, BlinkMacSystemFont, sans-serif;
+      background: #f0f2f5;
+      color: #1e3a5f;
+    }
+    .header {
+      background: linear-gradient(135deg, #1e3a5f 0%, #2c5f8a 100%);
+      color: #fff;
+      padding: 28px 0 22px;
+      text-align: center;
+    }
+    .header h1 { font-size: 26px; letter-spacing: 2px; margin-bottom: 6px; }
+    .header p { font-size: 14px; opacity: 0.8; }
+    .tabs {
+      display: flex; justify-content: center; gap: 0;
+      background: #fff; box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+      position: sticky; top: 0; z-index: 100;
+    }
+    .tab-btn {
+      padding: 14px 48px; border: none; background: transparent;
+      font-size: 15px; cursor: pointer; color: #666;
+      border-bottom: 3px solid transparent; transition: all .2s;
+      font-family: inherit;
+    }
+    .tab-btn:hover { color: #1e3a5f; background: #f5f6fa; }
+    .tab-btn.active { color: #1e3a5f; border-bottom-color: #3498db; font-weight: bold; }
+    .container { max-width: 1640px; margin: 0 auto; padding: 24px 20px; }
+    .tab-panel { display: none; }
+    .tab-panel.active { display: block; }
+    .viz-wrapper {
+      background: #fff; border-radius: 8px; box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+      overflow: hidden; padding: 16px;
+    }
+    .footer {
+      text-align: center; padding: 32px 20px; color: #999; font-size: 13px;
+    }
+    .footer a { color: #3498db; text-decoration: none; }
+    .footer a:hover { text-decoration: underline; }
+  </style>
+</head>
+<body>
+
+<div class="header">
+  <h1>电商用户行为与销售数据分析</h1>
+  <p>Tableau 交互式仪表板 &mdash; 数据驱动运营决策</p>
+</div>
+
+<div class="tabs">
+  <button class="tab-btn active" onclick="switchTab('tab1', this)">仪表板 1 — 销售与用户概览</button>
+  <button class="tab-btn" onclick="switchTab('tab2', this)">仪表板 2 — 转化漏斗与诊断</button>
+</div>
+
+<div class="container">
+
+  <!-- ===== 仪表板 1 ===== -->
+  <div id="tab1" class="tab-panel active">
+    <div class="viz-wrapper">
+      <div class='tableauPlaceholder' id='viz1779179344383' style='position: relative'>
+        <noscript>
+          <a href='#'><img alt='仪表板 1' src='https://public.tableau.com/static/images/_1/_17791786520900/1/1_rss.png' style='border: none' /></a>
+        </noscript>
+        <object class='tableauViz' style='display:none;'>
+          <param name='host_url' value='https://public.tableau.com/' />
+          <param name='embed_code_version' value='3' />
+          <param name='site_root' value='' />
+          <param name='name' value='_17791786520900/1' />
+          <param name='tabs' value='no' />
+          <param name='toolbar' value='yes' />
+          <param name='static_image' value='https://public.tableau.com/static/images/_1/_17791786520900/1/1.png' />
+          <param name='animate_transition' value='yes' />
+          <param name='display_static_image' value='yes' />
+          <param name='display_spinner' value='yes' />
+          <param name='display_overlay' value='yes' />
+          <param name='display_count' value='yes' />
+          <param name='language' value='zh-CN' />
+        </object>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== 仪表板 2 ===== -->
+  <div id="tab2" class="tab-panel">
+    <div class="viz-wrapper">
+      <div class='tableauPlaceholder' id='viz1779179444260' style='position: relative'>
+        <noscript>
+          <a href='#'><img alt='仪表板 2' src='https://public.tableau.com/static/images/_1/_17791789401870/2/1_rss.png' style='border: none' /></a>
+        </noscript>
+        <object class='tableauViz' style='display:none;'>
+          <param name='host_url' value='https://public.tableau.com/' />
+          <param name='embed_code_version' value='3' />
+          <param name='site_root' value='' />
+          <param name='name' value='_17791789401870/2' />
+          <param name='tabs' value='no' />
+          <param name='toolbar' value='yes' />
+          <param name='static_image' value='https://public.tableau.com/static/images/_1/_17791789401870/2/1.png' />
+          <param name='animate_transition' value='yes' />
+          <param name='display_static_image' value='yes' />
+          <param name='display_spinner' value='yes' />
+          <param name='display_overlay' value='yes' />
+          <param name='display_count' value='yes' />
+          <param name='language' value='zh-CN' />
+        </object>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div class="footer">
+  <p>Powered by <a href="https://public.tableau.com/" target="_blank">Tableau Public</a></p>
+  <p style="margin-top:4px;">数据来源：电商用户行为与销售数据集</p>
+</div>
+
+<script type='text/javascript'>
+  // ========== Tab 切换 ==========
+  function switchTab(tabId, btn) {
+    document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById(tabId).classList.add('active');
+    btn.classList.add('active');
+    // 切换后触发 Tableau viz 自适应
+    setTimeout(resizeAllVizzes, 100);
+  }
+
+  function resizeAllVizzes() {
+    var placeholders = document.querySelectorAll('.tableauPlaceholder');
+    for (var i = 0; i < placeholders.length; i++) {
+      var divEl = placeholders[i];
+      var vizObj = divEl.getElementsByTagName('object')[0];
+      if (!vizObj) continue;
+      var w = divEl.offsetWidth;
+      if (w > 800) {
+        vizObj.style.width = '100%';
+        vizObj.style.height = '927px';
+      } else if (w > 500) {
+        vizObj.style.width = '100%';
+        vizObj.style.height = '927px';
+      } else {
+        vizObj.style.width = '100%';
+        vizObj.style.height = (divEl.id === 'viz1779179344383') ? '2577px' : '2127px';
+      }
+    }
+  }
+
+  // ========== 加载 Tableau JS API（加载一次，渲染所有 viz） ==========
+  (function() {
+    var scriptElement = document.createElement('script');
+    scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';
+    scriptElement.onload = function() {
+      // API 加载完成后自适应尺寸
+      setTimeout(resizeAllVizzes, 200);
+    };
+    document.head.appendChild(scriptElement);
+    // 窗口大小变化时重新自适应
+    window.addEventListener('resize', function() {
+      setTimeout(resizeAllVizzes, 300);
+    });
+  })();
+</script>
+
+</body>
+</html>
